@@ -142,6 +142,15 @@ class GMC:
 
             return H
 
+        # Handle empty descriptors case
+        if descriptors is None:
+            # Store to next iteration
+            self.prevFrame = frame.copy()
+            self.prevKeyPoints = copy.copy(keypoints)
+            self.prevDescriptors = copy.copy(descriptors)
+
+            return H
+        
         # Match descriptors.
         knnMatches = self.matcher.knnMatch(self.prevDescriptors, descriptors, 2)
 
