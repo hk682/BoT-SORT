@@ -161,6 +161,9 @@ class GMC:
         maxSpatialDistance = 0.25 * np.array([width, height])
 
         # Handle empty matches case
+        if len(knnMatches) > 0:
+            knnMatches = [x for x in knnMatches if len(x) == 2]
+        
         if len(knnMatches) == 0:
             # Store to next iteration
             self.prevFrame = frame.copy()
